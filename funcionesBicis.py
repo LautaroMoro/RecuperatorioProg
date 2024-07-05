@@ -65,6 +65,7 @@ def informar_ganador(lista_bicis:list):
 informar_ganador(lista_bicis)
 
 #5)
+tipo_elegido = input("Elija el tipo de bici a filtrar: ")
 def filtrar_por_tipo(lista_bicis:list, tipo_elegido):
     
     """Filtra una bicicleta elegida por el usuario, y escribira un archivo igual al original, solo con el genero seleccionado
@@ -77,15 +78,18 @@ def filtrar_por_tipo(lista_bicis:list, tipo_elegido):
         tipo_elegido: Input que pide al usuario que tipo de bici quiere para que se filtre
     """
     tipo_elegido = input("Elije que bici quieres filtrar: ")
-    return [bici for bici in lista_bicis if bici['tipo'] == tipo_elegido]
-filtrar_por_tipo(lista_bicis, tipo_elegido)
+    
+    bici_filtrada = [bici for bici in lista_bicis if bici['tipo'] == tipo_elegido]
+    return bici_filtrada
+bici_filtrada = filtrar_por_tipo(lista_bicis, tipo_elegido)
+
 
 #6)
 def calcular_promedio_por_tipo(lista_bicis):
     """Calcula el promedio de las bicis segun el tipo de las mismas
 
     Args:
-        lista_bicis (list): lista de diccionarios de listas
+        lista_bicis (list): lista de diccionarios de bicis
 
     """
     total_tiempo = {}
@@ -120,13 +124,12 @@ def lista_swap(lista_bicis: list, i: int, j: int):
     aux = lista_bicis[i]
     lista_bicis[i] = lista_bicis[j]
     lista_bicis[j] = aux
-lista_swap(lista_bicis, i, j)
 
 
 def bici_ordenada_por_tipo (lista_bicis:list):
     """ordena las bicicletas por tipo
     Args:
-        participantes (list): lista de participantes
+        lista_bicis (list): lista de bicis
     """
     for i in range(0, len(lista_bicis)-1):
         for j in range(i +1, len(lista_bicis)):
@@ -138,25 +141,25 @@ bici_ordenada_por_tipo(lista_bicis)
 def ordenar_bicicletas_de_manera_ascendente (lista_bicis:list):
     """Ordena las bicicletas por tipo de manera ascendente
     Args:
-        lista_bicis (list): lista de participantes
+        lista_bicis (list): lista de bicis
     """
     if type(lista_bicis) != list:
         raise TypeError("La lista no es de tipo list")
     diccionario = {}
     for bicicleta in lista_bicis:
-        bicicleta = participante["tipo"]
+        bicicleta = bicicleta["tipo"]
         if bicicleta not in diccionario:
-            diccionario[bicicleta] = [{"nombre":participante["nombre"], "tipo":participante["tipo"], "id_bike":participante["id_bike"], "tiempo":participante["tiempo"]}]
+            diccionario[bicicleta] = [{"nombre":bicicleta["nombre"], "tipo":bicicleta["tipo"], "id_bike":bicicleta["id_bike"], "tiempo":bicicleta["tiempo"]}]
 
         else:
-            diccionario[bicicleta].append({"nombre":participante["nombre"], "tipo":participante["tipo"], "id_bike":participante["id_bike"], "tiempo":participante["tiempo"]})
+            diccionario[bicicleta].append({"nombre":bicicleta["nombre"], "tipo":bicicleta["tipo"], "id_bike":bicicleta["id_bike"], "tiempo":bicicleta["tiempo"]})
     lista_preparada = []
     for tipo in diccionario.keys():
         ordenar_bicicletas_de_manera_ascendente(diccionario[tipo])
         for bicicleta in diccionario[tipo]:
-            lista_preparada.append(participante)
+            lista_preparada.append(bicicleta)
     for participante in lista_preparada:
-        print(f"{participante["nombre"]}, {participante['tiempo']}, {participante['id_bike']}, {participante['tipo']}")
+        print(f"{bicicleta["nombre"]}, {bicicleta['tiempo']}, {bicicleta['id_bike']}, {bicicleta['tipo']}")
     return lista_preparada
 ordenar_bicicletas_de_manera_ascendente(lista_bicis)
 
